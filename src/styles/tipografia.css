@@ -1,0 +1,17 @@
+/* Classes de tipografia. Leem --text/--label, valem em qualquer bloco. */
+.rotulo { margin: 0; font: 500 var(--fs-label)/1.2 var(--ff-t); letter-spacing: .18em; text-transform: uppercase; color: var(--label); }
+.t-display { margin: 0; font: 700 var(--fs-display)/1.05 var(--ff-t); letter-spacing: -.025em; color: var(--text-strong); }
+.h2 { margin: 10px 0 0; font: 700 var(--fs-h2)/1.12 var(--ff-t); letter-spacing: -.015em; color: var(--text); text-wrap: balance; }
+.h3 { margin: 0; font: 600 var(--fs-h3)/1.25 var(--ff-t); letter-spacing: -.005em; color: var(--text); }
+.lead { font: 400 var(--fs-lead)/1.5 var(--ff-c); color: var(--text-2); max-width: var(--medida); }
+.legenda { font: 400 13px/1.45 var(--ff-c); color: var(--text-2); }
+.t-preco { font: 600 var(--fs-preco)/1.1 var(--ff-c); letter-spacing: -.01em; font-variant-numeric: tabular-nums; color: var(--text-strong); }
+.t-dado { font: 500 14px/1.3 var(--ff-c); font-variant-numeric: tabular-nums; color: var(--text-2); }
+.t-dado .cod, .t-dado.cod { letter-spacing: .06em; text-transform: uppercase; }
+h1[tabindex="-1"]:focus { outline: none; }
+/* texto do navegador a 200% (os títulos estão em rem): palavra que não cabe na linha quebra em vez de ser cortada pelo
+   overflow-x: clip da seção ("reposição", "conferência" e "privacidade" a 375) */
+:is(.t-display, .h2, .h3, .doc-legal__corpo h2) { overflow-wrap: break-word; }
+/* o H1 do hero mora num grid: com break-word a coluna cresce até a palavra inteira (o min-content não muda) e nada quebra;
+   anywhere entra no min-content e deixa a coluna caber na tela */
+.hero-h1 > span { overflow-wrap: anywhere; }

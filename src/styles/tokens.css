@@ -1,0 +1,74 @@
+/* Custom properties globais. Cor só por alias do Vuetify (paleta.js é o único lugar com hex).
+   Os triplets do Vuetify vêm com vírgula: rgb(var(--v-theme-x)) e rgba(var(--v-theme-x), .30), nunca "/ .3".
+   O seletor inclui as classes de tema porque menu e gaveta são teleportados para fora da .v-application. */
+:root, .v-theme--repasse, .v-theme--repassePetroleo {
+  /* paleta (aliases das cores do tema; hex só em paleta.js) */
+  --c-petroleo: rgb(var(--v-theme-petroleo));
+  --c-petroleo-profundo: rgb(var(--v-theme-petroleo-profundo));
+  --c-laranja: rgb(var(--v-theme-acao));
+  --c-laranja-escuro: rgb(var(--v-theme-acao-hover));
+  --c-laranja-pressed: rgb(var(--v-theme-acao-pressed));
+  --c-azul-claro: rgb(var(--v-theme-azul-claro));
+  --c-azul-texto: rgb(var(--v-theme-azul-texto));
+  --c-branco: rgb(var(--v-theme-branco));
+  --c-gelo: rgb(var(--v-theme-gelo));
+  --c-cinza-petroleo: rgb(var(--v-theme-cinza-petroleo));
+  --c-fio: rgb(var(--v-theme-fio));
+  --c-borda-controle: rgb(var(--v-theme-borda-controle));
+  --c-texto-2-escuro: rgb(var(--v-theme-texto-2-escuro));
+  --c-superficie-escura-2: rgb(var(--v-theme-superficie-escura-2));
+  --c-erro: rgb(var(--v-theme-erro));
+  --c-borda-escura: rgba(var(--v-theme-texto-2-escuro), .30);
+  --c-tracejado-escuro: rgba(var(--v-theme-texto-2-escuro), .50);
+  --c-branco-10: rgba(var(--v-theme-branco), .10);
+  --c-brilho: rgba(var(--v-theme-branco), .75);
+  --c-radial: rgba(var(--v-theme-petroleo-profundo), .60);
+
+  /* sombra tom petróleo (s2d/s3d: o "quase-preto petróleo", sombra-escura na paleta) */
+  --s1: 0 1px 2px rgba(var(--v-theme-petroleo), .08), 0 1px 1px rgba(var(--v-theme-petroleo), .04);
+  --s2: 0 6px 16px -4px rgba(var(--v-theme-petroleo), .16);
+  --s3: 0 18px 40px -12px rgba(var(--v-theme-petroleo), .28);
+  --s2d: 0 10px 24px -8px rgba(var(--v-theme-sombra-escura), .55);
+  --s3d: 0 24px 48px -16px rgba(var(--v-theme-sombra-escura), .70);
+
+  /* tipografia */
+  /* o "fallback" de cada uma é a fonte do sistema com as métricas da web font (src/styles/fontes.css): a troca não mexe no layout */
+  --ff-t: 'Poppins', 'Poppins fallback', system-ui, sans-serif;
+  --ff-c: 'Inter', 'Inter fallback', system-ui, sans-serif;
+  --fs-display: clamp(2.5rem, 1.5rem + 4.4vw, 4.75rem);
+  --fs-h2: clamp(1.875rem, 1.2rem + 2.6vw, 3rem);
+  --fs-h3: clamp(1.125rem, 1rem + .5vw, 1.375rem);
+  --fs-lead: clamp(1.0625rem, 1rem + .4vw, 1.25rem);
+  --fs-body: 16px;
+  --fs-label: 12px;
+  --fs-preco: 22px;
+  --fs-regra: 26px;
+
+  /* costura e seção */
+  --costura-respiro: 24px;
+  --sec-pad: 48px;
+
+  /* raios */
+  --r-bloco: 0; --r-btn: 0; --r-chip: 4px; --r-card: 22px; --r-tela: 14px; --r-sk: 4px;
+
+  /* espaço */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+
+  /* larguras */
+  --wrap-max: 1232px;
+  --wrap-pad: 16px;
+  --hero-max: 1360px;
+  --medida: 62ch;
+  --medida-doc: 56ch; /* documentos: 60–75 caracteres por linha (mediana ~68, p90 ≤ 75). 62ch dava p90 79 e 58ch 76: o "0" que mede o ch é mais largo que a letra média */
+  --header-h: 88px; /* logo de 72/80 em toda largura; o VToolbar do SiteHeader lê daqui */
+  --ancora-topo: 24px; /* folga da âncora (sumário, atalhos): router e scroll-padding do html leem daqui; o header não é fixo */
+  --fixo-margem: 16px; /* distância do botão fixo de WhatsApp à borda (direita e de baixo): o CSS e a medida do JS leem daqui */
+
+  /* ícone de alerta como máscara: erro de campo (CampoForm, EscolhaChips, AceiteTermos) */
+  --icone-alerta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2.2a7.8 7.8 0 1 1 0 15.6 7.8 7.8 0 0 1 0-15.6ZM10.9 7h2.2v6.5h-2.2Zm0 8h2.2v2.2h-2.2Z'/%3E%3C/svg%3E");
+}
+@media (min-width: 1024px) {
+  :root, .v-theme--repasse, .v-theme--repassePetroleo {
+    --fs-body: 17px; --fs-label: 13px; --fs-preco: 26px; --fs-regra: 40px; /* escala de texto a partir de 1024 */
+  }
+}

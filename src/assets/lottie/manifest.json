@@ -1,0 +1,277 @@
+{
+  "seta-repasse": {
+    "arquivo": "seta-repasse.json",
+    "arquivoInvertido": "seta-repasse-invertida.json",
+    "bytes": 2131,
+    "bytesInvertido": 2131,
+    "duracaoMs": 800,
+    "fps": 30,
+    "quadros": 24,
+    "largura": 210,
+    "altura": 145,
+    "posterFrame": 23,
+    "gatilho": "manual (hero, junto com o R: --atraso-hero-seta, 150 ms < 1024 e 600 ms ≥ 1024, depois da travessia)",
+    "loop": false,
+    "uso": "hero: a seta da logo se desenha sobre logo-icone-sem-seta (geometria da logo oficial)",
+    "curvas": [
+      "pass",
+      "settle"
+    ],
+    "naoPedido": {
+      "seta-repasse-invertida.json": "gêmea idêntica da normal: a seta é laranja (papel acao) nas duas variantes, e o hero pede sempre a normal"
+    },
+    "licenca": "autoria própria"
+  },
+  "seta-costura": {
+    "arquivo": "seta-costura.json",
+    "arquivoInvertido": "seta-costura-invertida.json",
+    "bytes": 2163,
+    "bytesInvertido": 2163,
+    "duracaoMs": 600,
+    "fps": 30,
+    "quadros": 18,
+    "largura": 160,
+    "altura": 48,
+    "posterFrame": 17,
+    "gatilho": "manual (costura entre seções)",
+    "loop": false,
+    "uso": "costuras entre seções (girada 90° no contêiner); seta reta na proporção da seta da logo",
+    "curvas": [
+      "pass",
+      "settle"
+    ],
+    "naoPedido": {
+      "seta-costura-invertida.json": "gêmea idêntica da normal: a seta é laranja (papel acao) nas duas variantes, e a costura pede sempre a normal"
+    },
+    "licenca": "autoria própria"
+  },
+  "seta-travessia": {
+    "arquivo": "seta-travessia.json",
+    "arquivoInvertido": "seta-travessia-invertida.json",
+    "bytes": 2171,
+    "bytesInvertido": 2171,
+    "duracaoMs": 600,
+    "fps": 30,
+    "quadros": 18,
+    "largura": 110,
+    "altura": 48,
+    "posterFrame": 17,
+    "gatilho": "manual (hero ≥ 1024, antes da seta da logo)",
+    "loop": false,
+    "uso": "travessia do hero: entra pela metade de quem vende, na altura da ponta da seta da logo, e termina atrás da placa (a ponta escondida; só ≥ 1024)",
+    "curvas": [
+      "pass",
+      "settle"
+    ],
+    "naoPedido": {
+      "seta-travessia-invertida.json": "gêmea idêntica da normal: a seta é laranja (papel acao) nas duas variantes, e o hero pede sempre a normal"
+    },
+    "licenca": "autoria própria"
+  },
+  "selo-verificado": {
+    "arquivo": "selo-verificado.json",
+    "arquivoInvertido": "selo-verificado-invertida.json",
+    "bytes": 2552,
+    "bytesInvertido": 2552,
+    "duracaoMs": 467,
+    "fps": 30,
+    "quadros": 14,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 13,
+    "gatilho": "manual (quem chama: hero, card do catálogo, bloco de confiança, bloco do selo da Loja)",
+    "loop": false,
+    "uso": "carimbo do selo: card do catálogo (a regra de entrada), hero, bloco de confiança e bloco do selo da Loja (\"NF + IMEI conferidos\" ou \"NF conferida\")",
+    "curvas": [
+      "settle"
+    ],
+    "licenca": "autoria própria"
+  },
+  "scan-imei-nf": {
+    "arquivo": "scan-imei-nf.json",
+    "arquivoInvertido": "scan-imei-nf-invertida.json",
+    "bytes": 5407,
+    "bytesInvertido": 5399,
+    "duracaoMs": 2000,
+    "fps": 30,
+    "quadros": 60,
+    "largura": 64,
+    "altura": 64,
+    "posterFrame": 22,
+    "marco": 44,
+    "gatilho": "viewport, loop lento",
+    "loop": true,
+    "uso": "bloco Confiança e Conferência",
+    "curvas": [
+      "linear (varredura)",
+      "settle (opacidade)"
+    ],
+    "licenca": "autoria própria"
+  },
+  "passo-1-cadastro": {
+    "arquivo": "passo-1-cadastro.json",
+    "arquivoInvertido": "passo-1-cadastro-invertida.json",
+    "bytes": 2908,
+    "bytesInvertido": 2897,
+    "duracaoMs": 400,
+    "fps": 30,
+    "quadros": 12,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 11,
+    "gatilho": "viewport, stagger 120 ms",
+    "loop": false,
+    "uso": "Como funciona — 1 Cadastro (CNPJ ativo)",
+    "curvas": [
+      "settle"
+    ],
+    "licenca": "autoria própria"
+  },
+  "passo-2-lote": {
+    "arquivo": "passo-2-lote.json",
+    "arquivoInvertido": "passo-2-lote-invertida.json",
+    "bytes": 3239,
+    "bytesInvertido": 3225,
+    "duracaoMs": 400,
+    "fps": 30,
+    "quadros": 12,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 11,
+    "gatilho": "viewport, stagger 120 ms",
+    "loop": false,
+    "uso": "Como funciona — 2 Lote publicado",
+    "curvas": [
+      "settle"
+    ],
+    "licenca": "autoria própria"
+  },
+  "passo-3-conferencia": {
+    "arquivo": "passo-3-conferencia.json",
+    "arquivoInvertido": "passo-3-conferencia-invertida.json",
+    "bytes": 2259,
+    "bytesInvertido": 2245,
+    "duracaoMs": 400,
+    "fps": 30,
+    "quadros": 12,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 11,
+    "gatilho": "viewport, stagger 120 ms",
+    "loop": false,
+    "uso": "Como funciona — 3 Conferência",
+    "curvas": [
+      "settle"
+    ],
+    "licenca": "autoria própria"
+  },
+  "passo-4-repasse": {
+    "arquivo": "passo-4-repasse.json",
+    "arquivoInvertido": "passo-4-repasse-invertida.json",
+    "bytes": 3242,
+    "bytesInvertido": 3214,
+    "duracaoMs": 400,
+    "fps": 30,
+    "quadros": 12,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 11,
+    "gatilho": "viewport, stagger 120 ms",
+    "loop": false,
+    "uso": "Como funciona — 4 Repasse fechado (vendedor → comprador)",
+    "curvas": [
+      "pass",
+      "settle"
+    ],
+    "licenca": "autoria própria"
+  },
+  "enviado-sucesso": {
+    "arquivo": "enviado-sucesso.json",
+    "arquivoInvertido": "enviado-sucesso-invertida.json",
+    "bytes": 2158,
+    "bytesInvertido": 2144,
+    "duracaoMs": 600,
+    "fps": 30,
+    "quadros": 18,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 17,
+    "gatilho": "manual (envio do formulário, quando a pessoa volta para a aba)",
+    "loop": false,
+    "uso": "confirmação de formulário (a comemoração: o único overshoot do site, 108%)",
+    "curvas": [
+      "settle"
+    ],
+    "naoPedido": {
+      "enviado-sucesso-invertida.json": "o formulário fica sempre em bloco claro"
+    },
+    "licenca": "autoria própria"
+  },
+  "carregando-lote": {
+    "arquivo": "carregando-lote.json",
+    "arquivoInvertido": "carregando-lote-invertida.json",
+    "bytes": 3483,
+    "bytesInvertido": 3444,
+    "duracaoMs": 1200,
+    "fps": 30,
+    "quadros": 36,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 0,
+    "gatilho": "loop enquanto pendente",
+    "loop": true,
+    "uso": "envio pendente",
+    "curvas": [
+      "pass (sobe)",
+      "settle (assenta)"
+    ],
+    "naoPedido": {
+      "carregando-lote-invertida.json": "o formulário fica sempre em bloco claro"
+    },
+    "licenca": "autoria própria"
+  },
+  "lote-vazio": {
+    "arquivo": "lote-vazio.json",
+    "arquivoInvertido": "lote-vazio-invertida.json",
+    "bytes": 2217,
+    "bytesInvertido": 2206,
+    "duracaoMs": 500,
+    "fps": 30,
+    "quadros": 15,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 14,
+    "gatilho": "viewport 1x",
+    "loop": false,
+    "uso": "loja sem resultado",
+    "curvas": [
+      "settle"
+    ],
+    "naoPedido": {
+      "lote-vazio-invertida.json": "o estado vazio da loja fica sempre em bloco claro"
+    },
+    "licenca": "autoria própria"
+  },
+  "whatsapp-nudge": {
+    "arquivo": "whatsapp-nudge.json",
+    "arquivoInvertido": "whatsapp-nudge-invertida.json",
+    "bytes": 1953,
+    "bytesInvertido": 1953,
+    "duracaoMs": 800,
+    "fps": 30,
+    "quadros": 24,
+    "largura": 48,
+    "altura": 48,
+    "posterFrame": 23,
+    "gatilho": "manual, máx 2x por visita",
+    "loop": false,
+    "uso": "botão fixo de WhatsApp: pulso de atenção em volta do ícone (o ícone é SVG estático)",
+    "curvas": [
+      "settle"
+    ],
+    "naoPedido": {
+      "whatsapp-nudge.json": "o botão fixo é petróleo: o site pede só a invertida"
+    },
+    "licenca": "autoria própria"
+  }
+}

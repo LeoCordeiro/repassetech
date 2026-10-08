@@ -1,0 +1,3 @@
+# Endereço com caminho (domínio/quero-vender, link colado sem o #): a Netlify entrega o index.html e o app leva o
+# caminho para a rota (src/lib/caminho.js). Arquivo que existe (assets, ícones) é servido antes desta regra.
+/*  /index.html  200

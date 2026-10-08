@@ -1,0 +1,22 @@
+/* Etiqueta de lote: EtiquetaLote (prévia do lote no Quero vender) e PreviaPedido (pedido de
+   reposição). Branca em qualquer bloco; um arquivo só para as duas não divergirem. */
+.v-card.etiqueta { max-width: 420px; border: 1px solid var(--c-borda-controle) !important; background: var(--c-branco) !important; color: var(--c-petroleo); overflow: visible; }
+.etq-cab { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--c-fio); background: var(--c-gelo); }
+.etq-cab .rotulo { font-size: 12px; }
+.etq-corpo { padding: 14px; display: grid; gap: 4px; justify-items: start; }
+.etq-cod { font: 500 14px/1.3 var(--ff-c); letter-spacing: .06em; color: var(--c-cinza-petroleo); font-variant-numeric: tabular-nums; }
+.etiqueta .vazio { color: var(--c-cinza-petroleo); }
+.etq-check { list-style: none; justify-self: stretch; margin: 10px 0 12px; padding: 10px 0 0; border-top: 1px solid var(--c-fio); display: grid; gap: 6px; font: 500 15px/1.3 var(--ff-c); color: var(--c-petroleo); font-variant-numeric: tabular-nums; }
+.etq-check li { display: flex; gap: 8px; align-items: center; }
+.etq-check svg { width: 18px; height: 18px; color: var(--c-azul-texto); flex: none; }
+.etq-check--pendente { color: var(--c-cinza-petroleo); }
+.etq-pend { width: 18px; height: 18px; flex: none; border: 2px solid var(--c-borda-controle); border-radius: 50%; }
+.etq-pendente { display: inline-flex; align-items: center; padding: 8px 12px; border: 1px solid var(--c-borda-controle); color: var(--c-cinza-petroleo); font: 600 13px/1 var(--ff-c); }
+/* tag PRÉVIA: a .tag-ex do base.css; quantidade e condição: o .t-dado da tipografia (a etiqueta é ctx-claro) */
+/* pedido de reposição: linhas rótulo/valor no desenho da ficha */
+.etq-linhas { margin: 0; padding: 4px 14px 0; }
+.etq-linhas > div { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid var(--c-fio); }
+.etq-linhas > div:first-child { border-top: 0; }
+.etq-linhas dt { font: 500 12px/1.3 var(--ff-t); letter-spacing: .14em; text-transform: uppercase; color: var(--c-azul-texto); }
+.etq-linhas dd { margin: 0; font: 500 15px/1.4 var(--ff-c); color: var(--c-petroleo); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.etq-pe { margin: 0; padding: 12px 14px 14px; border-top: 1px solid var(--c-fio); }

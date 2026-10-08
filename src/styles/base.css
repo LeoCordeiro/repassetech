@@ -1,0 +1,85 @@
+/* Base: reset, layout de página repetido, LinkPular, reveal e transição de rota. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: var(--ancora-topo); }
+/* cinto de segurança do Roboto (a correção principal é o settings.scss) */
+html, body, .v-application { font-family: var(--ff-c); }
+body { margin: 0; background: var(--c-branco); color: var(--c-petroleo); font: 400 var(--fs-body)/1.6 var(--ff-c); }
+.v-application { background: var(--c-branco); color: var(--c-petroleo); font-size: var(--fs-body); line-height: 1.6; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--focus, var(--c-petroleo)); outline-offset: 3px; }
+.wrap { max-width: var(--wrap-max); margin-inline: auto; padding-inline: var(--wrap-pad); }
+.sec { position: relative; padding-block: var(--sec-pad); overflow-x: clip; }
+.sec.entra { padding-top: calc(var(--sec-pad) + var(--costura-respiro)); }
+.sec.sai { padding-bottom: calc(var(--sec-pad) + var(--costura-respiro)); }
+.sec.com-radial { background-image: radial-gradient(120% 90% at var(--radial-at, 0% 100%), var(--c-radial) 0%, transparent 60%); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.fio-interno { height: 1px; border: 0; margin: 0; background: var(--c-fio); }
+/* tag PRÉVIA: o sinal de "isto ainda não foi conferido" (a etiqueta do Quero vender e o pedido do Quero comprar) */
+.tag-ex { padding: 4px 6px; border: 1px solid var(--c-borda-controle); border-radius: var(--r-chip); color: var(--c-cinza-petroleo); font: 500 12px/1 var(--ff-t); letter-spacing: .12em; }
+
+/* ---------- layouts de página que se repetem (um lugar só) ---------- */
+/* trilha: título fixo à esquerda (sticky) + espinha à direita a partir de 1024 */
+.g-trilha { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+/* confiança: o TituloSecao se desfaz no grid para a caixa do scan ocupar "rot side" */
+.conf-g { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "rot side" "h2 h2" "apoio apoio" "regras regras"; column-gap: 24px; }
+.conf-g > .titulo-secao { display: contents; }
+.conf-g .tp-rotulo { grid-area: rot; align-self: start; }
+.conf-g .tp-titulo { grid-area: h2; margin-top: 16px; }
+.conf-g .tp-lead { grid-area: apoio; }
+.conf-g > .regras { grid-area: regras; }
+.conf-side { grid-area: side; display: flex; align-items: center; gap: 8px; }
+/* invólucro do selo do scan: visível desde a montagem, no poster (sem ele a vaga ficava vazia ~2 s); carimba no marco */
+.conf-selo { display: inline-flex; }
+@media (min-width: 1024px) {
+  .g-trilha { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; }
+  .g-trilha__tit { position: sticky; top: 96px; align-self: start; padding-right: 64px; }
+  .conf-g { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); grid-template-areas: "rot side" "h2 side" "apoio side" "regras ."; }
+  .conf-side { flex-direction: column; justify-self: end; align-self: start; padding: 24px; border: 1px solid var(--border); background: var(--panel); }
+}
+/* 320–374: "CONFERÊNCIA" + a seta do cabeçalho não cabiam ao lado de scan + selo (152 px) e o rótulo passava da caixa (a
+   360 sobravam 98 px para o texto). Abaixo de 375 o selo carimba
+   no canto do scan (como no canto da logo do hero) e a lateral fica com 96 px. */
+@media (max-width: 374px) {
+  .conf-g { column-gap: 12px; }
+  .conf-side { position: relative; }
+  .conf-side .conf-selo { position: absolute; right: -8px; bottom: -8px; }
+}
+
+/* LinkPular: visível só no foco, no estilo do BtnM (é <button>: no hash router um href="#id" troca a rota) */
+.link-pular {
+  position: fixed; z-index: 100; top: 8px; left: 8px; display: inline-flex; align-items: center; height: 44px; padding: 0 16px;
+  border: 0; cursor: pointer;
+  background: var(--c-petroleo); color: var(--c-branco); font: 600 16px/1 var(--ff-t); text-decoration: none;
+  transform: translateY(-200%);
+}
+.link-pular:focus-visible { transform: none; outline-color: var(--c-petroleo); }
+
+/* ---------- reveal ---------- */
+[data-reveal]:not([data-reveal-grupo]), [data-reveal-grupo] [data-reveal-item] {
+  transition: opacity var(--dur-reveal) var(--ease-settle), transform var(--dur-reveal) var(--ease-settle);
+  transition-delay: calc(min(var(--i, 0), 5) * var(--reveal-stagger, var(--stagger-card)) + var(--reveal-atraso, 0ms));
+}
+.js:not(.rm) [data-reveal]:not([data-reveal-grupo]):not(.is-revealed),
+.js:not(.rm) [data-reveal-grupo]:not(.is-revealed) [data-reveal-item] {
+  opacity: 0; transform: translateY(var(--reveal-shift, var(--shift-md)));
+}
+.reveal-instante, .reveal-instante [data-reveal-item] { transition: none !important; }
+@media print {
+  [data-reveal], [data-reveal-item] { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- transição de rota ---------- */
+.rota-leave-active, .rota-hero-leave-active { transition: opacity var(--dur-sai) var(--ease-pass); }
+.rota-leave-to, .rota-hero-leave-to { opacity: 0; }
+/* rota-hero: sem classes de entrada — a Home entra seca e o hero faz a abertura dele */
+.rota-enter-active { transition: opacity var(--dur-entra) var(--ease-settle), transform var(--dur-entra) var(--ease-settle); }
+.rota-enter-from { opacity: 0; transform: translateY(var(--shift-sm)); }
+.rota-enter-active .tp-seta { transition: transform var(--dur-traco-rota) var(--ease-pass); }
+.rota-enter-from .tp-seta { transform: scaleX(0); }
+/* só o cabeçalho da PÁGINA (os h2 dela entram com o wrapper); o H1 só por opacidade (anda os 12 px do wrapper:
+   somava 28) e o lead sem atraso — saída 120 + ~2 quadros do out-in + 280 cabem nos 450 */
+.rota-enter-active .titulo-secao--pagina .tp-titulo { transition: opacity var(--dur-entra) var(--ease-settle); }
+.rota-enter-from .titulo-secao--pagina .tp-titulo { opacity: 0; }
+.rota-enter-active .titulo-secao--pagina .tp-lead { transition: opacity var(--dur-entra) var(--ease-settle), transform var(--dur-entra) var(--ease-settle); }
+.rota-enter-from .titulo-secao--pagina .tp-lead { opacity: 0; transform: translateY(var(--shift-sm)); }

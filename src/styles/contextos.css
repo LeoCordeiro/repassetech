@@ -1,0 +1,44 @@
+/* Contextos de bloco: mesmo token, valor por bloco.
+   Presos à classe de tema que o v-theme-provider do SecaoBloco coloca; .ctx-* para peça solta no outro tom.
+   .ctx-* vai DOBRADO (especificidade 0,2,0): o componente do Vuetify põe a classe do tema herdado no mesmo nó
+   (VCard .ctx-claro dentro de bloco petróleo ganha .v-theme--repassePetroleo) e, no empate, a regra declarada
+   depois venceria. Dobrado, o contexto declarado na peça vence sempre o tema herdado. */
+.v-theme--repasse, .ctx-claro.ctx-claro {
+  --bg: var(--c-branco); --panel: var(--c-gelo);
+  --text: var(--c-petroleo); --text-strong: var(--c-petroleo-profundo);
+  --text-2: var(--c-cinza-petroleo); --label: var(--c-azul-texto);
+  --border: var(--c-fio);
+  --sec-border: var(--c-petroleo); --sec-text: var(--c-petroleo); --sec-hover: var(--c-gelo);
+  --sec-dis-border: var(--c-fio); --sec-dis-text: var(--c-cinza-petroleo); --sec-dis-bg: transparent;
+  --focus: var(--c-petroleo);
+  --motivo: var(--c-petroleo);
+  --slot-borda: var(--c-borda-controle);
+  --selo-bg: var(--c-petroleo); --selo-text: var(--c-branco); --selo-icon: var(--c-azul-claro);
+  --sombra-card: var(--s2); --sombra-card-h: var(--s3);
+  --btnm-bg: var(--c-petroleo); --btnm-text: var(--c-branco); --btnm-hover: var(--c-petroleo-profundo);
+  --espinha-futura: var(--c-borda-controle);
+  --passo-num: var(--c-azul-texto);
+  --seta: var(--c-laranja);
+  --check: var(--c-azul-texto);
+}
+.v-theme--repassePetroleo, .ctx-petroleo.ctx-petroleo {
+  --bg: var(--c-petroleo); --panel: var(--c-petroleo-profundo);
+  --text: var(--c-branco); --text-strong: var(--c-branco);
+  --text-2: var(--c-texto-2-escuro); --label: var(--c-texto-2-escuro);
+  --border: var(--c-borda-escura);
+  --sec-border: var(--c-branco); --sec-text: var(--c-branco); --sec-hover: var(--c-branco-10);
+  --sec-dis-border: var(--c-superficie-escura-2); --sec-dis-text: var(--c-texto-2-escuro); --sec-dis-bg: var(--c-superficie-escura-2);
+  --focus: var(--c-branco);
+  --motivo: var(--c-petroleo-profundo);
+  --slot-borda: var(--c-texto-2-escuro);
+  --selo-bg: var(--c-branco); --selo-text: var(--c-petroleo); --selo-icon: var(--c-azul-texto);
+  --sombra-card: var(--s2d); --sombra-card-h: var(--s3d);
+  --btnm-bg: var(--c-branco); --btnm-text: var(--c-petroleo-profundo); --btnm-hover: var(--c-gelo);
+  --espinha-futura: var(--c-tracejado-escuro);
+  --passo-num: var(--c-texto-2-escuro);
+  --seta: var(--c-laranja);
+  --check: var(--c-azul-claro);
+}
+.ctx-claro.ctx-claro, .ctx-petroleo.ctx-petroleo { color: var(--text); }
+/* sobre gelo, a seta escurece: 2,72 reprova, 3,55 passa */
+.sobre-gelo { --seta: var(--c-laranja-escuro); }

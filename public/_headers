@@ -1,0 +1,44 @@
+# Repasse Tech: cabeçalhos HTTP na Netlify. Vai em public/_headers: o Vite copia para dist/, e a Netlify aplica e não serve
+# o arquivo. As regras casam pelo caminho pedido; o "/*" vale para todas as páginas (inclusive as que o _redirects reescreve).
+# script-src: o hash é do <script> inline do index.html, já com a quebra de linha normalizada pelo parser do HTML.
+# Mexeu nesse script (até espaço ou comentário), o hash muda: o build confere.
+# style-src 'unsafe-inline': o Vuetify injeta o tema num <style> em tempo de execução.
+# manifest-src 'self': o site.webmanifest (ícones do Android); sem ele o default-src 'none' bloquearia o manifesto.
+/*
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-5LQm3aMmH0cgQIpfXx00x21fAaYd+ZxyMkiUv3ThVe4='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Permissions-Policy: accelerometer=(), autoplay=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), window-management=(), xr-spatial-tracking=()
+  Strict-Transport-Security: max-age=31536000
+
+# O index.html sempre revalida (no-cache + ETag): o deploy novo chega na próxima visita.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+
+# Arquivos com hash no nome: cache longo.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Arquivos SEM hash no nome: um dia de cache (trocou o arquivo, o nome continua: o pior caso é um dia com o ícone antigo).
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/favicon.ico
+  Cache-Control: public, max-age=86400
+/favicon-16x16.png
+  Cache-Control: public, max-age=86400
+/favicon-32x32.png
+  Cache-Control: public, max-age=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+/android-chrome-192x192.png
+  Cache-Control: public, max-age=86400
+/android-chrome-512x512.png
+  Cache-Control: public, max-age=86400
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+/og-image.png
+  Cache-Control: public, max-age=86400

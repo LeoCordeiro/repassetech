@@ -1,0 +1,97 @@
+/* Tira a cara de Material de fábrica (complementa os defaults de src/plugins/vuetify.js).
+   Hover/foco nunca por camada de opacidade do Vuetify: camada ::before própria + outline 3 px.
+   TODA regra começa com `:root `: o CSS dos componentes do Vuetify chega em chunk carregado DEPOIS deste arquivo,
+   com a mesma especificidade, e venceria pela ordem. O :root sobe um nível e vale também para menu/gaveta
+   teleportados. Sem `$layers` do Vuetify: com camada, o !important dele (.rounded-0) passa a vencer o nosso. */
+:root :is(.v-btn__overlay, .v-btn__underlay, .v-card__overlay, .v-card__underlay, .v-chip__overlay, .v-chip__underlay,
+  .v-expansion-panel-title__overlay) { display: none !important; }
+:root .v-btn { letter-spacing: 0; text-transform: none; }
+:root .v-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+:root .v-btn:not(.rt-btn-seta)::after { display: none; } /* o Vuetify desenha um anel próprio no ::after; no BtnSeta o ::after é a ponta */
+
+/* ---------- BtnM = VBtn padrão (.rt-btn) ---------- */
+:root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo) {
+  position: relative; isolation: isolate; gap: 8px; height: 44px; padding: 0 16px; border-radius: 0;
+  background: var(--btnm-bg) !important; color: var(--btnm-text) !important;
+  font: 600 16px/1 var(--ff-t); letter-spacing: 0; text-transform: none;
+  transition: transform var(--dur-press) var(--ease-settle);
+}
+:root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo)::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--btnm-hover); opacity: 0;
+  transition: opacity var(--dur-hover) var(--ease-settle);
+}
+@media (hover: hover) and (pointer: fine) { :root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo):not(.v-btn--disabled):hover::before { opacity: 1; } }
+:root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo):not(.v-btn--disabled):active { transform: scale(.98); }
+:root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo).v-btn--disabled { background: var(--c-fio) !important; color: var(--c-cinza-petroleo) !important; opacity: 1; }
+:root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo) .v-btn__content { gap: 8px; white-space: normal; line-height: 1.2; }
+/* rótulo longo em tela estreita ("Abrir o WhatsApp de novo" a 320) quebra em vez de vazar a caixa */
+:root .v-btn.rt-btn:not(.rt-btn-seta, .rt-btn-contorno, .rt-whats-fixo) { max-width: 100%; height: auto !important; min-height: 44px; padding-block: 10px; }
+
+/* ---------- campos (rótulo fica fora, pelo CampoForm) ---------- */
+:root .v-field { font: 400 16px/1.5 var(--ff-c); border-radius: 0; color: var(--c-petroleo); }
+:root .v-field__outline { --v-field-border-opacity: 1; } /* borda-controle cheia no branco: 3,4:1 (WCAG 1.4.11) */
+:root .v-field--focused .v-field__outline { --v-field-border-width: 2px; }
+:root .v-field__input::placeholder, :root .v-field__input input::placeholder { color: var(--c-cinza-petroleo); opacity: 1; }
+:root .v-field__overlay { display: none; }
+/* erro de campo: desenhado pelo CampoForm, não pelo VMessages; VSelect/VRadio/VList não são usados */
+
+/* ---------- chips de filtro (.rt-chip) ---------- */
+:root .v-chip.rt-chip {
+  height: 44px; padding: 0 14px; /* 44: alvo de toque mínimo */ border: 1px solid var(--c-borda-controle); border-radius: var(--r-chip);
+  background: var(--bg); color: var(--text); font: 500 14px/1 var(--ff-c); letter-spacing: 0; cursor: pointer;
+  transition: transform var(--dur-press) var(--ease-settle), background-color var(--dur-hover) var(--ease-settle),
+    border-color var(--dur-hover) var(--ease-settle), color var(--dur-hover) var(--ease-settle);
+}
+:root .v-chip.rt-chip:active { transform: scale(.98); }
+/* hover: camada do contexto (gelo no claro, branco 10% no petróleo) e borda do secundário */
+@media (hover: hover) and (pointer: fine) {
+  :root .v-chip.rt-chip:not(.rt-chip--on):not([aria-pressed="true"]):hover { background-color: var(--sec-hover); border-color: var(--sec-border); }
+}
+:root :is(.v-chip.rt-chip.rt-chip--on, .v-chip.rt-chip[aria-pressed="true"]) { background: var(--c-petroleo); border-color: var(--c-petroleo); color: var(--c-branco); }
+:root .v-chip.rt-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+:root .v-chip.rt-chip::after { display: none; }
+
+/* ---------- FAQ: sem animar altura ---------- */
+:root .v-expansion-panels { border-radius: 0; }
+:root .v-expansion-panel { background: transparent !important; color: var(--text) !important; border-radius: 0 !important; border-bottom: 1px solid var(--border); }
+:root .v-expansion-panel::after, :root .v-expansion-panel__shadow { display: none !important; }
+:root .v-expansion-panel-title {
+  gap: 16px; min-height: 64px; padding: 20px 0; font: 600 var(--fs-h3)/1.25 var(--ff-t); color: var(--text); text-align: left;
+}
+:root .v-expansion-panel-title:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } /* o Vuetify zera o outline e o overlay está escondido */
+:root .v-expansion-panel-title__icon { margin-inline-start: auto; }
+:root .v-expansion-panel-text { transition: none !important; }
+:root .v-expansion-panel-text__wrapper { padding: 0 0 20px; font: 400 16px/1.6 var(--ff-c); color: var(--text-2); max-width: var(--medida); }
+
+/* ---------- gaveta (MenuCelular) ---------- */
+/* a gaveta andava com a curva e o tempo de fábrica do Vuetify (200 ms Material nos dois
+   sentidos, animando também box-shadow/width/height…), e o véu entrava a 0,4 no 1º quadro e sobrava ~120 ms depois da gaveta.
+   Agora: transform 280 settle na entrada, 120 pass na saída; o véu vai de 0 a 0,4 junto, em opacity. */
+:root .v-navigation-drawer.menu-celular { transition: transform var(--dur-entra) var(--ease-settle), visibility 0s; }
+:root .v-navigation-drawer.menu-celular:not(.v-navigation-drawer--active) {
+  transition: transform var(--dur-sai) var(--ease-pass), visibility 0s var(--ease-pass) var(--dur-sai);
+}
+:root .v-navigation-drawer__scrim { opacity: .4 !important; }
+:root .v-navigation-drawer__scrim:is(.fade-transition-enter-from, .fade-transition-leave-to) { opacity: 0 !important; }
+:root .v-navigation-drawer__scrim.fade-transition-enter-active { transition: opacity var(--dur-entra) var(--ease-settle) !important; }
+:root .v-navigation-drawer__scrim.fade-transition-leave-active { transition: opacity var(--dur-sai) var(--ease-pass) !important; }
+
+/* ---------- card e campo: o site nunca usa `loading` em card nem em campo; a barra de progresso de fábrica (keyframes
+   indeterminate-*, left/right, ease, 2,2 s infinito) ficava pausada em todo VCard e em todo VField (o loader do campo é o
+   mesmo VProgressLinear) ---------- */
+:root :is(.v-card__loader, .v-field__loader) { display: none; }
+
+/* ---------- tabela ---------- */
+:root .v-table { background: transparent !important; color: var(--text) !important; }
+
+/* ---------- alto contraste do sistema (forced-colors): o estado marcado dos chips continua à vista (o sistema trocava fundo,
+   borda e texto dos dois pelas mesmas cores) e a ponta do BtnSeta não some no fundo ---------- */
+@media (forced-colors: active) {
+  :root :is(.v-chip.rt-chip[aria-pressed="true"], .v-chip.rt-chip.rt-chip--on, .escolha__chip--on) {
+    forced-color-adjust: none; background: Highlight; border-color: Highlight; color: HighlightText;
+  }
+  :root .v-btn.rt-btn-seta::after { forced-color-adjust: none; background: ButtonText; }
+}
+
+/* ---------- utilitárias do Vuetify sem Roboto (cinto, a correção é o settings.scss) ---------- */
+:root :is([class*="text-h"], [class*="text-subtitle"], [class*="text-body"], .text-button, .text-caption, .text-overline) { font-family: var(--ff-c) !important; }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="80 60 292 308" role="img" aria-label="Repasse Tech"><title>Repasse Tech</title><g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M110 90 V310" stroke="#0F4C5C" stroke-width="40"/>
+    <path d="M110 90 H190 A65 65 0 0 1 190 220 H110" stroke="#0F4C5C" stroke-width="40"/>
+    <path d="M175 225 C205 260 225 295 270 295 H300" stroke="#F26B1D" stroke-width="40"/>
+  </g>
+  <polygon points="300,252 352,295 300,338" fill="#F26B1D" stroke="#F26B1D" stroke-width="8" stroke-linejoin="round"/>
+  <rect x="160" y="122" width="36" height="66" rx="8" fill="#5FA8B5"/>
+  <rect x="170" y="130" width="16" height="4" rx="2" fill="#FFFFFF"/></svg>

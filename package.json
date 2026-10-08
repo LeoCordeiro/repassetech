@@ -1,0 +1,28 @@
+{
+  "name": "repasse-tech",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/lottie-check.mjs src/assets/lottie && vite build",
+    "preview": "vite preview",
+    "test": "node scripts/unidade.mjs",
+    "lottie:check": "node scripts/lottie-check.mjs src/assets/lottie",
+    "lottie:gerar": "node scripts/lottie-gerar.mjs src/assets/lottie"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "lottie-web": "^5.13.0",
+    "vue": "^3.5.43",
+    "vue-router": "^4.6.4",
+    "vuetify": "^3.13.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "sass-embedded": "^1.105.1",
+    "vite": "^6.4.4",
+    "vite-plugin-vuetify": "^2.1.3"
+  }
+}

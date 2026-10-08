@@ -1,0 +1,87 @@
+/* Tokens de movimento. ÚNICO arquivo com cubic-bezier e duração solta. */
+:root {
+  --ease-pass: cubic-bezier(0.45, 0, 0.15, 1);
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-confirm: cubic-bezier(0.34, 1.3, 0.64, 1); /* SÓ o rótulo de sucesso do formulário */
+
+  --dur-press: 100ms;
+  --dur-hover: 200ms;
+  --dur-sai: 120ms;
+  --dur-entra: 280ms;
+  --dur-move: 300ms;
+  --dur-regra: 300ms; /* marcador e texto da regra */
+  --dur-no: 250ms;
+  --dur-traco: 350ms;
+  --dur-reveal: 400ms;
+  --dur-parte: 450ms;
+  --dur-hero: 900ms;
+  --dur-envio-min: 600ms; /* carregando do formulário: tempo mínimo (é informação, vale sob reduzir movimento) */
+  --dur-brilho: 1.2s; /* skeleton, loop */
+  --dur-traco-rota: 280ms; /* seta do cabeçalho de página: 120 de saída + ~2 quadros do out-in + 280 cabem nos 450 */
+  --atraso-texto-regra: 200ms; /* texto da regra: a seta chega, a regra é dita */
+
+  /* tempos que o JS usa (lidos por src/lib/motion.js, ms('--token')). Nenhuma duração solta em .js/.vue. */
+  --dur-rota-entra: 300ms; /* duração da entrada de rota no <Transition>: título e lead (280) + 1 quadro; sem atraso do lead */
+  --atraso-chip-costura: 540ms; /* chip da costura aparece quando a seta chega */
+  --espera-costura: 450ms; /* rede: grade que espera a costura revela sozinha */
+  --atraso-selo-card: 200ms; /* selo do card carimba depois do card entrar */
+  --atraso-whats-fixo: 1200ms; /* botão fixo de WhatsApp entra depois da página */
+  --fixo-volta: 150ms; /* botão fixo que sumiu sobre um controle só volta com a rolagem parada há isso */
+  /* hero: < 1024 o R e a seta da logo saem juntos; ≥ 1024 a travessia entra primeiro, some
+     atrás da placa, e só então o R aparece com a seta saindo (travessia → seta da logo → selo) */
+  --atraso-hero-travessia: 150ms; /* ≥ 1024: o lote entra pela metade de quem vende e some atrás da placa (600 ms) */
+  --atraso-hero-seta: 150ms; /* o R (CSS) e a seta da logo (seta-repasse, 800 ms) começam juntos: o "P" não fica sozinho */
+  --atraso-hero-selo: 550ms; /* o selo carimba 400 ms depois da seta começar */
+  --dur-hero-lottie: 1400ms; /* hero: os Lottie terminam (≥ 1024: seta 450 + 800, selo 850 + 467; libera o nudge) */
+  --rede-rota: 600ms; /* rede: transição de rota que não dispara after-leave não trava a rolagem (não é movimento) */
+  --nudge-espera: 10s; /* nudge nunca antes de 10 s da carga */
+  --nudge-permanencia: 30s; /* ou 30 s na página com rolagem ≥ 50% */
+  --nudge-tick: 1s; /* passo do relógio do nudge */
+  --ocioso-paginas: 1500ms; /* sem requestIdleCallback: pré-carga das páginas */
+  --ocioso-lottie: 400ms; /* sem requestIdleCallback: pré-carga do player do Lottie */
+  --espera-pre-carga: 3s; /* pré-carga (páginas e player) só depois do load + isso: fora do caminho crítico */
+  --espera-lottie: 1500ms; /* Lottie que não carregou nisso mostra o #fallback */
+  --espera-vez-lottie: 300ms; /* teto de 5 Lottie tocando: o 6º espera isso por uma vaga; senão fica no poster */
+
+  --shift-hover: 4px;
+  --shift-sm: 12px;
+  --shift-md: 16px;
+  --shift-lg: 24px;
+  --shift-parte: 48px;
+
+  --stagger-linha: 60ms;
+  --stagger-card: 80ms;
+  --stagger-passo: 120ms;
+}
+@media (min-width: 1024px) {
+  :root {
+    --atraso-hero-seta: 450ms; /* a haste da travessia já chegou à placa (o traço pass faz ~90% em 300 dos 433 ms) */
+    --atraso-hero-selo: 850ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --shift-hover: 0px; --shift-sm: 0px; --shift-md: 0px; --shift-lg: 0px; --shift-parte: 0px;
+    --stagger-linha: 0ms; --stagger-card: 0ms; --stagger-passo: 0ms;
+    --dur-sai: 0ms; --dur-rota-entra: 0ms; --atraso-chip-costura: 0ms; --espera-costura: 0ms;
+    --atraso-selo-card: 0ms; --atraso-whats-fixo: 0ms; --atraso-hero-seta: 0ms; --atraso-hero-selo: 0ms; --atraso-hero-travessia: 0ms; --dur-hero-lottie: 0ms;
+  }
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important; transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* .rm no <html> espelha a mídia ao vivo (useReduzirMovimento): mesma rede para o JS e o CSS */
+.rm {
+  --shift-hover: 0px; --shift-sm: 0px; --shift-md: 0px; --shift-lg: 0px; --shift-parte: 0px;
+  --stagger-linha: 0ms; --stagger-card: 0ms; --stagger-passo: 0ms;
+  --dur-sai: 0ms; /* a saída da rota esperava 120 ms de tela vazia sob .rm: o CSS some na hora, o Vue esperava */
+  --dur-rota-entra: 0ms; --atraso-chip-costura: 0ms; --espera-costura: 0ms;
+  --atraso-selo-card: 0ms; --atraso-whats-fixo: 0ms; --atraso-hero-seta: 0ms; --atraso-hero-selo: 0ms; --atraso-hero-travessia: 0ms; --dur-hero-lottie: 0ms;
+}
+.rm *, .rm *::before, .rm *::after {
+  animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+  transition-duration: .01ms !important; transition-delay: 0ms !important;
+}

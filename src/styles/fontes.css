@@ -1,0 +1,15 @@
+/*
+ * Fallback com as MÉTRICAS das web fonts: enquanto a Poppins/Inter não chega (font-display: swap), o texto
+ * sai na fonte do sistema ajustada para ocupar o mesmo espaço — a troca não quebra linha nem empurra bloco. Antes, no Quero
+ * vender, os chips re-quebravam quando a Inter 500 chegava: CLS 0,03 em toda carga e 0,21–0,23 em 3 de 11 no desktop.
+ * Uma face por peso usado (a fonte do sistema tem regular e bold): size-adjust = largura média da web font ÷ a do Arial no
+ * peso que o navegador usaria, medida no Chrome com o texto do site (canvas, 100 px); ascent/descent/line-gap = as métricas
+ * da web font (Poppins 1050/350/100 de 1000; Inter 1984/494/0 de 2048) ÷ size-adjust (o navegador escala a substituição).
+ * Trocou a versão da Poppins ou da Inter: medir de novo e refazer as contas.
+ */
+@font-face { font-family: 'Poppins fallback'; src: local('Arial'), local('ArialMT'); font-weight: 500; size-adjust: 111.09%; ascent-override: 94.52%; descent-override: 31.51%; line-gap-override: 9%; }
+@font-face { font-family: 'Poppins fallback'; src: local('Arial Bold'), local('Arial-BoldMT'); font-weight: 600; size-adjust: 105.1%; ascent-override: 99.91%; descent-override: 33.3%; line-gap-override: 9.51%; }
+@font-face { font-family: 'Poppins fallback'; src: local('Arial Bold'), local('Arial-BoldMT'); font-weight: 700; size-adjust: 105.58%; ascent-override: 99.45%; descent-override: 33.15%; line-gap-override: 9.47%; }
+@font-face { font-family: 'Inter fallback'; src: local('Arial'), local('ArialMT'); font-weight: 400; size-adjust: 105.79%; ascent-override: 91.58%; descent-override: 22.8%; line-gap-override: 0%; }
+@font-face { font-family: 'Inter fallback'; src: local('Arial'), local('ArialMT'); font-weight: 500; size-adjust: 106.6%; ascent-override: 90.88%; descent-override: 22.63%; line-gap-override: 0%; }
+@font-face { font-family: 'Inter fallback'; src: local('Arial Bold'), local('Arial-BoldMT'); font-weight: 600; size-adjust: 101.2%; ascent-override: 95.73%; descent-override: 23.84%; line-gap-override: 0%; }

@@ -1,0 +1,8 @@
+# Build na Netlify: o mesmo comando de produção daqui (guardas do vite.config + lottie:check). Nunca pôr
+# VITE_PERMITIR_PENDENCIAS no painel. Cabeçalhos em public/_headers, rotas em public/_redirects.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"

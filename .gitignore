@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# override local de ambiente (número de teste etc.): nunca entra no repositório
+.env*.local

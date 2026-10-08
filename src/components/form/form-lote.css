@@ -1,0 +1,28 @@
+/* Comum a FormVender e FormComprar. Formulário sempre em bloco claro. */
+.form-lote { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; min-width: 0; }
+.form-lote fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.form-lote__grupo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.form-lote__grupo > legend { float: left; width: 100%; margin: 0; padding: 0 0 10px; border-bottom: 1px solid var(--c-fio); } /* float: vira item do grid */
+.form-lote__par { display: grid; gap: 20px; min-width: 0; }
+@media (min-width: 640px) {
+  .form-lote__par { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* faixa da categoria do catálogo (?tipo= no Quero vender, ?categoria= no Quero comprar < 1024): antes do 1º campo */
+.form-faixa { display: grid; justify-items: start; gap: 4px; padding: 12px 14px; border: 1px solid var(--c-borda-controle); border-left: 4px solid var(--c-petroleo); background: var(--c-gelo); }
+.form-faixa__txt { margin: 0; font: 400 15px/1.45 var(--ff-c); color: var(--c-petroleo); }
+.form-faixa__txt strong { font-weight: 600; }
+.form-faixa__rot { display: block; margin-bottom: 4px; }
+/* aviso que entra no lugar (NF/IMEI) */
+.rt-aviso-enter-active { transition: opacity var(--dur-no) var(--ease-settle), transform var(--dur-no) var(--ease-settle); }
+.rt-aviso-enter-from { opacity: 0; transform: translateY(-8px); }
+/* "+ Adicionar observação": campo opcional recolhido (alvo de 44 px, cara de link) */
+.form-lote__mais {
+  justify-self: start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0; border: 0; background: none;
+  color: var(--c-petroleo); font: 600 16px/1.3 var(--ff-t); cursor: pointer;
+}
+.form-lote__mais span { font-size: 20px; line-height: 1; }
+@media (hover: hover) and (pointer: fine) { .form-lote__mais:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; } }
+/* prévia de 1 linha acima do botão (< 1024; a partir daí a etiqueta fica ao lado) */
+.form-lote__previa { margin: 0 0 -16px; }
+.form-lote > .envio-form { margin-top: 0; } /* o gap do grid já separa do último grupo */
+@media (min-width: 1024px) { .form-lote__previa { display: none; } }
